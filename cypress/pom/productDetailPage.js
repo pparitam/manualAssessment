@@ -2,11 +2,17 @@ const selectors = {
   pageHeading: '[data-qa="pageTitle"]',
   subscriptionPlan : '.Styles__Wrapper-sc-417d53d7-0.ljKmqh li.Styles__Selector-sc-f56d912a-0',
   subscriptionPrice: '.Styles__Subtitle-sc-f56d912a-8',
-  totalPrice: '[data-qa="pagePrice"] strong'
+  totalPrice: '[data-qa="pagePrice"] strong',
+  addToCart: '[data-qa="productCTA"]'
 };
-class ProductPage {
+class ProductDetailPage {
     click = {
-
+        addToCart(){
+          cy.intercept('GET', '**/checkout/**').as('checkoutPage');
+          const addToCart = selectors.addToCart;
+          cy.get(addToCart).click();
+          cy.wait('@checkoutPage')
+        }
     };
     
     actions = {
@@ -33,9 +39,7 @@ class ProductPage {
                     cy.get(totalPrice).invoke('text').then(price =>{
                     expect(subscrictionPrice).contain(price)
                     })
-                })
-
-                
+                })                
             })
 
           }
@@ -46,4 +50,4 @@ class ProductPage {
 
 }
 
-export default new ProductPage();
+export default new ProductDetailPage();

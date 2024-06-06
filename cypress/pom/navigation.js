@@ -24,6 +24,7 @@ class Navigation {
         //scroll to the top of the page
         cy.scrollTo('top');
       }
+
 }
 
 export default  new Navigation();

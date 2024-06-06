@@ -23,3 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+  Cypress.Commands.add('fillPaymentForm', (cardNumber, expiryDate, cvv) => {
+    cy.get('input[name="cardNumber"]').type(cardNumber);
+    cy.get('input[name="expiryDate"]').type(expiryDate);
+    cy.get('input[name="cvv"]').type(cvv);
+  });
