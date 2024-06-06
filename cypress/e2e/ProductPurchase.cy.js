@@ -7,9 +7,7 @@ import ProductDetailPage from "../pom/productDetailPage";
 
 
 describe('Iterate over elements', () => {
-    before(() => {
 
-    });
     it('Verify that prices differ correctly between the subscription and one-off purchase options.', () => {
         navigation.toProductDetailsPage();
         ProductDetailPage.assertions.pageHeading('Power Shampoo');

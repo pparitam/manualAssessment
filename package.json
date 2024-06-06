@@ -9,6 +9,8 @@
   "author": "Parita Patel",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.11.0"
+    "cypress": "^13.11.0",
+    "cypress-mochawesome-reporter": "^3.8.2"
+
   }
 }
