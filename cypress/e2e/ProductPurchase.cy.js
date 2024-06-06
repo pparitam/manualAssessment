@@ -23,7 +23,6 @@ describe('Iterate over elements', () => {
         checkoutPage.action.fillInRegisterForm("Parita", "Patel", "07587403912", "30/03/1989");
         checkoutPage.click.submitForm();
         checkoutPage.assertion.accountCreated();
-
     })
 
 
