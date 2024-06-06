@@ -8,9 +8,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress run
         uses: cypress-io/github-action@v6
+      - uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          # Action runs: using: node20 as defined in
-          # https://github.com/cypress-io/github-action/blob/master/action.yml
-          # Node.js minor version is aligned to
-          # https://github.com/actions/runner/blob/main/src/Misc/externals.sh
-          node-version: 21.2.0
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
