@@ -17,7 +17,7 @@ describe('Iterate over elements', () => {
         ProductDetailPage.assertions.productTotalPrice()
     })
     
-    it.only('Verify that prices differ correctly between the subscription and one-off purchase options.', () => {
+    it('Verify that prices differ correctly between the subscription and one-off purchase options.', () => {
         navigation.toProductDetailsPage();
         ProductDetailPage.click.addToCart();
         checkoutPage.action.fillInRegisterForm("Parita", "Patel", "07587403912", "30/03/1989");
