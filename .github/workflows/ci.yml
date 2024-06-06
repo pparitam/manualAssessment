@@ -1,4 +1,4 @@
-name: Component tests
+name: Product Purchase flow Tests
 on: push
 jobs:
   cypress-run:
