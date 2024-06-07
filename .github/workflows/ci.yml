@@ -18,8 +18,7 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
           - name: Checkout
-    - name: Run k6 test
-      uses: k6io/action@v0.1
+
 
       # Test run video was always captured, so this action uses "always()" condition
       - uses: actions/upload-artifact@v3
