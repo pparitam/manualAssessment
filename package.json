@@ -4,13 +4,16 @@
   "description": "Manual end to end purchase flow",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "k6:run": "k6 run load-test/load-test.js",
+    "test:performance": "npm run cypress:run && npm run k6:run"
   },
   "author": "Parita Patel",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.11.0",
+    "cypress-iframe": "^1.0.1",
     "cypress-mochawesome-reporter": "^3.8.2"
-
   }
 }

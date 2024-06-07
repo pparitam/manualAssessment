@@ -19,4 +19,6 @@ module.exports = defineConfig({
   screenshotOnRunFailure: false,
   trashAssetsBeforeRuns: true,
   video: false,
+  chromeWebSecurity: false,
+  experimentalModifyObstructiveThirdPartyCode: true
 });
