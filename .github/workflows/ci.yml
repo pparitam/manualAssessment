@@ -11,15 +11,12 @@ jobs:
       - name: Run k6 test
         uses: k6io/action@v0.1
         with:
-        filename: load-test/load-test.js
+          filename: load-test/load-test.js
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          - name: Checkout
-
-
       # Test run video was always captured, so this action uses "always()" condition
       - uses: actions/upload-artifact@v3
         if: always()
