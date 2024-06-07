@@ -19,4 +19,12 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
-
+    k6:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run k6 test
+      uses: k6io/action@v0.1
+      with:
+        filename: load-test/load-test.js
