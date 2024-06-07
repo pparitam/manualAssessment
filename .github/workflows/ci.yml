@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           #html file name define in k6 code
-          name:   LoadTest.html
+          name:   LoadTest
           # path in our github repo
           path:  LoadTest.html
           # available time period file after that is automatically remove from the workspace 
