@@ -31,10 +31,12 @@ const selectors = {
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner: "[name='holderName']",
-    paynowBtnCC: '.adyen-checkout__button__text',
-    clickAddNewCard: "[class='b-button m-info m-width_full ']",
+    paynowBtn: '[data-qa="createAccountBtn"]',
 
+    //order Summary 
+    orderSummarySection : ".review_CheckoutReviewSummary__6g2S3 div.OrderItem_column_right__details_container__F0NdN",
 
+       
 };
 
 class CheckoutPage {
@@ -130,6 +132,12 @@ class CheckoutPage {
             cy.get(addressLine1).invoke('val').should('not.be.empty');
             cy.get(town).invoke('val').should('not.be.empty');
             cy.get(submittedPostCode).invoke('val').should('not.be.empty');
+        },
+        orderSummary() {
+            const orderSummarySection = selectors.orderSummarySection;
+            cy.get(orderSummarySection).should('be.visible').then((el)=>{
+                cy.wrap(el).invoke('text').should('contain', "Power Shampoo")
+            })
         }
     };
 

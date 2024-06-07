@@ -22,6 +22,7 @@ describe('Iterate over elements', () => {
     
     it('Verify that prices differ correctly between the subscription and one-off purchase options.', () => {
         ProductDetailPage.click.addToCart();
+        checkoutPage.assertion.orderSummary();
         checkoutPage.action.fillInRegisterForm("Parita", "Patel", "07587403912", "30/03/1989");
         checkoutPage.click.submitForm();
         checkoutPage.assertion.accountCreated();
@@ -29,7 +30,10 @@ describe('Iterate over elements', () => {
         checkoutPage.assertion.addressForm();
         checkoutPage.click.continuepayment();
        // checkoutPage.action.selectCreditCard();
+
     })
+
+
 
     
 })
