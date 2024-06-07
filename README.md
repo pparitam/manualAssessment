@@ -9,7 +9,8 @@ This repository contains all the necessary files and instructions to perform the
 
 ## Google Spreadsheet
 The Google Spreadsheet contains the data required for the assessment. You can access it using the following link:
-Google Spreadsheet Link [Manual Test Cases]([https://pages.github.com/](https://docs.google.com/spreadsheets/d/144E5LvQNEi-moya-Ma7frRpRZzCGMkmcMGNiqf5lGXw/edit#gid=963947777))
+
+Google Spreadsheet Link: [Manual testcase](https://docs.google.com/spreadsheets/d/144E5LvQNEi-moya-Ma7frRpRZzCGMkmcMGNiqf5lGXw/edit#gid=963947777)
 
 ## Cypress Framework
 Cypress is an end-to-end testing framework that is used to write automated tests for web applications.
