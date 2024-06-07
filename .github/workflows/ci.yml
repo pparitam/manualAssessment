@@ -14,22 +14,22 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
       # Test run video was always captured, so this action uses "always()" condition
-      # - uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: cypress-videos
-      #     path: cypress/videos
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
 
       - name: Run k6 test
         uses: k6io/action@v0.1
         with:
-          filename: LoadTest.html
+          filename: load-test/load-test.js
       - name: Upload html report for job 1
         uses: actions/upload-artifact@v2
         with:
           #html file name define in k6 code
-          name:   LoadTest
+          name: summary  
           # path in our github repo
-          path:  LoadTest.html
+          path: summary.html  
           # available time period file after that is automatically remove from the workspace 
           retention-days: 2  
