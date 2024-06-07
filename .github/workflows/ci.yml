@@ -8,10 +8,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress run
         uses: cypress-io/github-action@v6
-      - name: Run k6 test
-        uses: k6io/action@v0.1
-        with:
-          filename: load-test/load-test.js
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
@@ -24,3 +20,16 @@ jobs:
           name: cypress-videos
           path: cypress/videos
 
+      - name: Run k6 test
+        uses: k6io/action@v0.1
+        with:
+          filename: load-test/load-test.js
+      - name: Upload html report for job 1
+        uses: actions/upload-artifact@v2
+        with:
+          #html file name define in k6 code
+          name: summary  
+          # path in our github repo
+          path: summary.html  
+          # available time period file after that is automatically remove from the workspace 
+          retention-days: 2  
