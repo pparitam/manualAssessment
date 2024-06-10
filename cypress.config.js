@@ -20,5 +20,6 @@ module.exports = defineConfig({
   trashAssetsBeforeRuns: true,
   video: false,
   chromeWebSecurity: false,
-  experimentalModifyObstructiveThirdPartyCode: true
+  experimentalModifyObstructiveThirdPartyCode: true,
+  allowedOrigin: true
 });

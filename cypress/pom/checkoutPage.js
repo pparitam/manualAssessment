@@ -85,7 +85,6 @@ class CheckoutPage {
         }, 
         
         selectCreditCard() {
-               cy.intercept("GET", "**/order-thankyou/**").as('orderConfirmation');
                const creditCardCardNumberIframe = selectors.creditCardCardNumberIframe;
                const creditCardFieldsCardNumber= selectors.creditCardFieldsCardNumber;
                const creditCardExpirationDateIframe= selectors.creditCardExpirationDateIframe;
@@ -143,6 +142,9 @@ class CheckoutPage {
 
         orderConfirmation () {
             const orderConfirmation = selectors.orderConfirmation;
+            cy.intercept(/order-thankyou/).as('orderConfirmation');
+            cy.wait(10000)
+            cy.wait('@orderConfirmation',{timeout: 30000})
             cy.get(orderConfirmation).should('be.visible')
         }
     };
