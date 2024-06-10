@@ -99,7 +99,7 @@ class CheckoutPage {
                 cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(card.master.date, { force: true });
                 cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(card.master.code, { force: true });
                 cy.get(creditCardFieldsCardOwner).type(card.master.owner, { force: true });
-                cy.get(paynowBtn).should('be.visible',{timeout:10000}).dblclick({ force: true });
+                cy.get(paynowBtn).should('be.visible',{timeout:10000}).click({ force: true });
           },
         
 
