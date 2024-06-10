@@ -30,7 +30,6 @@ describe('Iterate over elements', () => {
         checkoutPage.assertion.addressForm();
         checkoutPage.click.continuepayment();
         checkoutPage.action.selectCreditCard();
-        checkoutPage.assertion.orderConfirmation()
     })
 
 

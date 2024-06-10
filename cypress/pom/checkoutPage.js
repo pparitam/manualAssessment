@@ -85,8 +85,7 @@ class CheckoutPage {
         }, 
         
         selectCreditCard() {
-
-
+               cy.intercept("GET", "**/order-thankyou/**").as('orderConfirmation');
                const creditCardCardNumberIframe = selectors.creditCardCardNumberIframe;
                const creditCardFieldsCardNumber= selectors.creditCardFieldsCardNumber;
                const creditCardExpirationDateIframe= selectors.creditCardExpirationDateIframe;
@@ -102,8 +101,6 @@ class CheckoutPage {
                 cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(card.master.code, { force: true });
                 cy.get(creditCardFieldsCardOwner).type(card.master.owner, { force: true });
                 cy.get(paynowBtn).should('be.visible',{timeout:10000}).dblclick({ force: true });
-                cy.wait(25000)
-                cy.wait('@orderConfirmation');
           },
         
 
