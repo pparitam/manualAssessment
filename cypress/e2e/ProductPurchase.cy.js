@@ -29,8 +29,8 @@ describe('Iterate over elements', () => {
         checkoutPage.action.completeShipping();
         checkoutPage.assertion.addressForm();
         checkoutPage.click.continuepayment();
-       // checkoutPage.action.selectCreditCard();
-
+        checkoutPage.action.selectCreditCard();
+        checkoutPage.assertion.orderConfirmation()
     })
 
 

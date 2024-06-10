@@ -24,17 +24,21 @@ const selectors = {
     continuePayment: '[data-qa="createAccountBtn"]',
 
     //payment locators
+
     creditCardCardNumberIframe: '.adyen-checkout__field--cardNumber .js-iframe',
-    creditCardFieldsCardNumber: "[data-fieldtype='encryptedCardNumber']",
-    creditCardExpirationDateIframe: '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
+    creditCardFieldsCardNumber:"[data-fieldtype='encryptedCardNumber']",
+    creditCardExpirationDateIframe:'.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe',
     creditCardFieldsExpirationDate: "[data-fieldtype='encryptedExpiryDate']",
     creditCardSecurityCodeIframe: '.adyen-checkout__card__cvc__input .js-iframe',
     creditCardFieldsSecurityCode: "[data-fieldtype='encryptedSecurityCode']",
     creditCardFieldsCardOwner: "[name='holderName']",
-    paynowBtn: '[data-qa="createAccountBtn"]',
+    paynowBtn: '#CheckoutStep--PAYMENT [data-qa]',
 
     //order Summary 
     orderSummarySection : ".review_CheckoutReviewSummary__6g2S3 div.OrderItem_column_right__details_container__F0NdN",
+
+    //order confirmation
+    orderConfirmation: '[data-qa="ThankYouOrderHeader"]'
 
        
 };
@@ -83,23 +87,23 @@ class CheckoutPage {
         selectCreditCard() {
 
 
-            cy.origin("checkoutshopper-test.adyen.com", ()=>{          
-               let creditCardCardNumberIframe = '.adyen-checkout__field--cardNumber .js-iframe';
-                let creditCardFieldsCardNumber= "[data-fieldtype='encryptedCardNumber']";
-                let creditCardExpirationDateIframe= '.adyen-checkout__field--expiryDate .js-iframe, .adyen-checkout__card__exp-date__input .js-iframe';
-                let creditCardFieldsExpirationDate= "[data-fieldtype='encryptedExpiryDate']";
-                let creditCardSecurityCodeIframe= '.adyen-checkout__card__cvc__input .js-iframe';
-                let creditCardFieldsSecurityCode= "[data-fieldtype='encryptedSecurityCode']";
-
-                cy.get('iframe').find(creditCardFieldsCardNumber).type(card.master.cardNo, { force: true });
-                // cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(card.master.date, { force: true });
-                // cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(card.master.code, { force: true });
-            })
-
-            //   cy.get(creditCardFieldsCardOwner).type(card.master.owner, { force: true });
-              //cy.get(paynowBtnCC).click({ force: true });
-            
-      
+               const creditCardCardNumberIframe = selectors.creditCardCardNumberIframe;
+               const creditCardFieldsCardNumber= selectors.creditCardFieldsCardNumber;
+               const creditCardExpirationDateIframe= selectors.creditCardExpirationDateIframe;
+               const creditCardFieldsExpirationDate= selectors.creditCardFieldsExpirationDate;
+               const creditCardSecurityCodeIframe= selectors.creditCardSecurityCodeIframe;
+               const creditCardFieldsSecurityCode= selectors.creditCardFieldsSecurityCode;
+               const creditCardFieldsCardOwner= selectors.creditCardFieldsCardOwner;
+               const paynowBtn= selectors.paynowBtn;
+                cy.frameLoaded('.js-iframe[title="Iframe for card number"]')
+                cy.get('iframe').invoke('show')//Added as iframe element was not visible
+                cy.iframe(creditCardCardNumberIframe).find(creditCardFieldsCardNumber).type(card.master.cardNo, { force: true });
+                cy.iframe(creditCardExpirationDateIframe).find(creditCardFieldsExpirationDate).type(card.master.date, { force: true });
+                cy.iframe(creditCardSecurityCodeIframe).find(creditCardFieldsSecurityCode).type(card.master.code, { force: true });
+                cy.get(creditCardFieldsCardOwner).type(card.master.owner, { force: true });
+                cy.get(paynowBtn).should('be.visible',{timeout:10000}).dblclick({ force: true });
+                cy.wait(25000)
+                cy.wait('@orderConfirmation');
           },
         
 
@@ -138,6 +142,11 @@ class CheckoutPage {
             cy.get(orderSummarySection).should('be.visible').then((el)=>{
                 cy.wrap(el).invoke('text').should('contain', "Power Shampoo")
             })
+        },
+
+        orderConfirmation () {
+            const orderConfirmation = selectors.orderConfirmation;
+            cy.get(orderConfirmation).should('be.visible')
         }
     };
 
